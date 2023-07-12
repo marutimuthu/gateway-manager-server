@@ -178,14 +178,13 @@ exports.register = (req, res) => {
                   if (error) {
                     // console.log(error);
                     res.status(500).send({ message: error });
+                    return;
                   } else {
                     // console.log(success);
-                    res.status(200).send({ message: success });
+                    // res.status(200).send({ message: success });
+                    return res.status(200).send({ message: "Device registered to new user.", id: `${device._id}` });
                   }
                 });
-              
-              return res.status(200).send({ message: "Device registered to new user.",
-                id: `${device._id}` });
             }
             else {
 
@@ -211,14 +210,14 @@ exports.register = (req, res) => {
                         res.status(500).send({ message: error });
                         console.log(error);
                       } else {
-                        res.status(200).send({ message: success });
+                        // res.status(200).send({ message: success });
                         // console.log(success);
+                        res.status(200).send({
+                          message: "Device Registered",
+                          id: `${data._id}`
+                        });
                       }
                     });
-                  res.status(200).send({
-                    message: "Device Registered",
-                    id: `${data._id}`
-                  });
                 })
                 .catch(err => {
                   // console.log("not ok")
